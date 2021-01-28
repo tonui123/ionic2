@@ -18,11 +18,11 @@ const items: Item[] = [
     },
     {
         src: '/images/pic2.jpg',
-        text: 'รูปที่1'
+        text: 'รูปที่2'
     },
     {
         src: '/images/pic3.jpg',
-        text: 'รูปที่1'
+        text: 'รูปที่3'
     },
 ]
 

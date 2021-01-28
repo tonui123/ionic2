@@ -10,16 +10,23 @@ import {
   IonItem,
   IonLabel,
   IonList,
-  IonButton,
-
+  IonButton
 } from '@ionic/react';
-
 import React, { useState } from 'react';
+import { loginUser } from '../firebaseConfig';
 
 const Login: React.FC = () => {
 
-  const [text, setText] = useState<string>();
-  const [number, setNumber] = useState<number>();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function login(){
+    const res = await loginUser(email, password);
+    if(res){
+      console.log('You have logged in!')
+      // toast('You have logged in!')
+    }
+  }
 
   return (
     <IonPage>
@@ -35,15 +42,15 @@ const Login: React.FC = () => {
       <IonContent fullscreen>
         <IonList>
           <IonItem>
-            <IonLabel position="floating">Username or Email</IonLabel>
-            <IonInput value={text}></IonInput>
+            <IonLabel position="floating">Email</IonLabel>
+            <IonInput onIonChange={(e: any) => setEmail(e.target.value)} />
           </IonItem>
           <IonItem>
             <IonLabel position="floating">Password</IonLabel>
-            <IonInput value={text}></IonInput>
+            <IonInput onIonChange={(e: any) => setPassword(e.target.value)} type="password" />
           </IonItem>
         </IonList>
-        <IonButton color="primary">เข้าสู่ระบบ</IonButton>
+        <IonButton expand="block" color="primary" onClick={login} >เข้าสู่ระบบ</IonButton>
       </IonContent>
     </IonPage>
   );
